@@ -86,7 +86,7 @@ sub printGccLine
         print( $colors{path}, $1, $reset );
         print( $colors{location}, $2, $reset );
         print("\n");
-         print($colors{error},"[E]--> ");
+        print($colors{error},"[E]--> ");
         print( $colors{error}, $3, $reset );
         printMessage( $4 );
         print( "\n" );
