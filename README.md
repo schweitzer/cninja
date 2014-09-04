@@ -23,3 +23,8 @@ How it works
 `cninja` runs `ninja` in a pseudo terminal, parses the output with
 copious regular expressions, and injects ansi color codes.
 
+Note
+----
+
+This version is a fork of https://github.com/frankmiller/cninja
+Some minor changes was added for my common use.
