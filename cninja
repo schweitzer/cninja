@@ -15,12 +15,12 @@ my %colors = (
     generating => color("bold blue"),
     building   => color("green"),
     linking    => color("bold red"),
-    failed     => "",
-    path       => color("bold"),
-    location   => color("bold"),
+    failed     => color("bold underscore red"),
+    path       => color("white"),
+    location   => color("bold white"),
     warning    => color("bold yellow"),
     error      => color("bold red"),
-    code       => color("bold cyan")
+    code       => color("bold blue")
 );
 
 sub loadPreferences
@@ -75,6 +75,18 @@ sub printGccLine
     {
         print( $colors{path}, $1, $reset );
         print( $colors{location}, $2, $reset );
+        print("\n");
+        print($colors{error},"[E]--> ");
+        print( $colors{error}, $3, $reset );
+        printMessage( $4 );
+        print( "\n" );
+    }
+    elsif ( $line =~ /^(.*?:)(\d+(?::\d+)?:\ )(erreur :)(\ .*)$/ )
+    {
+        print( $colors{path}, $1, $reset );
+        print( $colors{location}, $2, $reset );
+        print("\n");
+         print($colors{error},"[E]--> ");
         print( $colors{error}, $3, $reset );
         printMessage( $4 );
         print( "\n" );
@@ -83,6 +95,18 @@ sub printGccLine
     {
         print( $colors{path}, $1, $reset );
         print( $colors{location}, $2, $reset );
+        print("\n");
+        print($colors{warning},"[W]--> ");
+        print( $colors{warning},$3, $reset );
+        printMessage( $4 );
+        print( "\n" );
+    }
+    elsif ( $line =~ /^(.*?:)(\d+(?::\d+)?:\ )(attention :)(\ .*)$/ )
+    {
+        print( $colors{path}, $1, $reset );
+        print( $colors{location}, $2, $reset );
+        print("\n");
+        print($colors{warning},"[W]--> ");
         print( $colors{warning}, $3, $reset );
         printMessage( $4 );
         print( "\n" );
